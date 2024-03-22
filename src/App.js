@@ -26,7 +26,7 @@ PrivateRoute.propTypes = {
 function App() {
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id;
   return (
-    <Router>
+    <Router basename="/smart-coworking-frontend">
       <div style={{ display: 'flex', minHeight: '100vh' }}>
         <Sidebar />
         <div style={{ flexGrow: 1 }}>
