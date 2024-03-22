@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/';
+const API_URL = 'https://smart-coworking-857b32bb5cda.herokuapp.com/';
 
 const authService = {
   register: async (name, email, password, passwordConfirmation, role) => {

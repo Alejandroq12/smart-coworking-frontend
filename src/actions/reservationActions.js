@@ -29,7 +29,7 @@ export const createReservationFailure = (error) => ({
 export const createReservation = (reservationData) => async (dispatch) => {
   dispatch(createReservationRequest());
   try {
-    const response = await axios.post('http://localhost:3001/api/v1/users/:user_id/reservations', { reservation: reservationData });
+    const response = await axios.post('https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/users/:user_id/reservations', { reservation: reservationData });
     dispatch(createReservationSuccess(response.data));
   } catch (error) {
     dispatch(createReservationFailure(error.message));
@@ -38,7 +38,7 @@ export const createReservation = (reservationData) => async (dispatch) => {
 
 export const fetchUserReservations = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`http://localhost:3001/api/v1/users/${userId}/reservations`);
+    const response = await axios.get(`https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/users/${userId}/reservations`);
     dispatch({ type: 'FETCH_USER_RESERVATIONS_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({ type: 'FETCH_USER_RESERVATIONS_FAILURE', payload: error.message });
@@ -47,7 +47,7 @@ export const fetchUserReservations = (userId) => async (dispatch) => {
 
 export const deleteReservation = (userId, reservationId) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:3001/api/v1/users/${userId}/reservations/${reservationId}`);
+    await axios.delete(`https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/users/${userId}/reservations/${reservationId}`);
     dispatch({ type: 'DELETE_RESERVATION_SUCCESS', payload: reservationId });
   } catch (error) {
     dispatch({ type: 'DELETE_RESERVATION_FAILURE', payload: error.message });

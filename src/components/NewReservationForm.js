@@ -33,7 +33,7 @@ const NewReservationForm = () => {
   useEffect(() => {
     const fetchSpaceCws = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/v1/users/${formData.user_id}/space_cws`);
+        const response = await axios.get(`https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/users/${formData.user_id}/space_cws`);
         setSpaceCws(response.data);
         const cityIds = response.data.map((spaceCw) => spaceCw.city_id);
         setFormData((prevFormData) => ({
@@ -50,7 +50,7 @@ const NewReservationForm = () => {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/v1/all_cities');
+        const response = await axios.get('https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/all_cities');
         setCities(response.data);
       } catch (error) {
         setError('Error fetching cities:');
@@ -72,7 +72,7 @@ const NewReservationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/v1/users/:user_id/reservations', formData);
+      await axios.post('https://smart-coworking-857b32bb5cda.herokuapp.com/api/v1/users/:user_id/reservations', formData);
       setSuccessMessage('Reservation created successfully!');
       setTimeout(() => {
         setSuccessMessage('');
