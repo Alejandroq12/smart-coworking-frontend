@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     // Ensure userId is not null or undefined before dispatching
     if (userId) {
-      dispatch(fetchCoworkingSpaces(userId));
+      dispatch(fetchCoworkingSpaces());
     }
   }, [dispatch, userId]);
 
