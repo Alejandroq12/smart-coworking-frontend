@@ -92,8 +92,8 @@
 
 @media screen and (max-width: 769px) {
   .sidebar h1 {
-    position: absolute;
-    top: 70%;
+    position: relative;
+    top: 0%;
     left: 18px;
     transform: none;
     font-size: 22px;
