@@ -31,20 +31,21 @@ const NewReservationForm = () => {
     setFormData((prevFormData) => ({ ...prevFormData, user_id: userId }));
   }, []);
 
+  const fetchSpaceCws = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`);
+      setSpaceCws(response.data);
+      const cityIds = response.data.map((spaceCw) => spaceCw.city_id);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        city_id: cityIds[0] || '',
+      }));
+    } catch (error) {
+      setError('Error fetching Space_cws:');
+    }
+  };
+
   useEffect(() => {
-    const fetchSpaceCws = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}api/v1/users/${formData.user_id}/space_cws`);
-        setSpaceCws(response.data);
-        const cityIds = response.data.map((spaceCw) => spaceCw.city_id);
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          city_id: cityIds[0] || '',
-        }));
-      } catch (error) {
-        setError('Error fetching Space_cws:');
-      }
-    };
     fetchSpaceCws();
   }, [formData.user_id]);
 
@@ -87,6 +88,7 @@ const NewReservationForm = () => {
         city_id: '',
         comments: '',
       });
+      fetchSpaceCws();
       setTimeout(() => {
         setSuccessMessage('');
       }, 5000); // 5 seconds
