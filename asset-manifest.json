@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/smart-coworking-frontend/static/css/main.44b473f0.css",
+    "main.css": "/smart-coworking-frontend/static/css/main.2c68a2e0.css",
     "main.js": "/smart-coworking-frontend/static/js/main.ef1acbbc.js",
     "static/media/back3-pic.jpg": "/smart-coworking-frontend/static/media/back3-pic.edc59da15150d921dbd9.jpg",
     "static/media/back2-pic.jpg": "/smart-coworking-frontend/static/media/back2-pic.f8a00e849e011088bfdf.jpg",
@@ -8,11 +8,11 @@
     "index.html": "/smart-coworking-frontend/index.html",
     "static/media/menu-icon.svg": "/smart-coworking-frontend/static/media/menu-icon.86540bbf2d4a0febf72f.svg",
     "static/media/close-icon.svg": "/smart-coworking-frontend/static/media/close-icon.63ebee055cb823822268.svg",
-    "main.44b473f0.css.map": "/smart-coworking-frontend/static/css/main.44b473f0.css.map",
+    "main.2c68a2e0.css.map": "/smart-coworking-frontend/static/css/main.2c68a2e0.css.map",
     "main.ef1acbbc.js.map": "/smart-coworking-frontend/static/js/main.ef1acbbc.js.map"
   },
   "entrypoints": [
-    "static/css/main.44b473f0.css",
+    "static/css/main.2c68a2e0.css",
     "static/js/main.ef1acbbc.js"
   ]
 }
