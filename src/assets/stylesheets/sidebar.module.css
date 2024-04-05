@@ -1,5 +1,5 @@
 .sidebar h1 {
-  position: absolute;
+  position: relative;
   top: 60px;
   left: 20px;
   transform: rotate(-5deg);
@@ -93,7 +93,7 @@
 @media screen and (max-width: 769px) {
   .sidebar h1 {
     position: absolute;
-    top: 80px;
+    top: 70%;
     left: 18px;
     transform: none;
     font-size: 22px;
@@ -156,7 +156,9 @@
   }
 
   .sidebar h1 {
-    font-size: 13px;
+    top: -5%;
+    left: 10px;
+    font-size: 85%;
   }
 
   .sidebar ul li button {
@@ -170,7 +172,9 @@
 
 @media screen and (min-width: 992px) {
   .sidebar h1 {
-    font-size: 19px;
+    top: -5%;
+    left: 10px;
+    font-size: 113%;
   }
 
   .sidebar ul li button {
@@ -180,7 +184,9 @@
 
 @media screen and (min-width: 1400px) {
   .sidebar h1 {
-    font-size: 25px;
+    top: -8%;
+    left: 10px;
+    font-size: 160%;
   }
 
   .sidebar ul li button {
