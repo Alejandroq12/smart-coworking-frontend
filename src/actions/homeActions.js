@@ -5,10 +5,10 @@ export const FETCH_COWORKING_SPACES_REQUEST = 'FETCH_COWORKING_SPACES_REQUEST';
 export const FETCH_COWORKING_SPACES_SUCCESS = 'FETCH_COWORKING_SPACES_SUCCESS';
 export const FETCH_COWORKING_SPACES_FAILURE = 'FETCH_COWORKING_SPACES_FAILURE';
 
-export const fetchCoworkingSpaces = (userId) => async (dispatch) => {
+export const fetchCoworkingSpaces = () => async (dispatch) => {
   dispatch({ type: FETCH_COWORKING_SPACES_REQUEST });
   try {
-    const response = await axios.get(`${API_BASE_URL}api/v1/users/${userId}/space_cws`);
+    const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`);
     dispatch({
       type: FETCH_COWORKING_SPACES_SUCCESS,
       payload: response.data,
