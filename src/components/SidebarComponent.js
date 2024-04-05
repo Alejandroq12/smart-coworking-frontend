@@ -7,6 +7,7 @@ import styles from '../assets/stylesheets/sidebar.module.css';
 function Sidebar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id;
   const [isActive, setIsActive] = React.useState(false);
 
   const navigateTo = (route) => {
@@ -19,8 +20,11 @@ function Sidebar() {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    navigate('/');
+    const isConfirmed = window.confirm('Are you sure you want to log out?');
+    if (isConfirmed) {
+      dispatch(logout());
+      navigate('/');
+    }
   };
 
   React.useEffect(() => {
@@ -41,14 +45,22 @@ function Sidebar() {
     <>
       <div className={`${styles.sidebar} ${isActive ? styles.active : ''}`}>
         <h1>SMART COWORKING</h1>
+        {userId && (
+          <ul>
+            <li><button type="button" onClick={() => navigateTo('/home')}>HOME</button></li>
+            <li><button type="button" onClick={() => navigateTo('/NewReservation')}>RESERVE</button></li>
+            <li><button type="button" onClick={() => navigateTo('/MyReservations')}>RESERVATIONS</button></li>
+            <li><button type="button" onClick={() => navigateTo('/newSpaceCw')}>ADD</button></li>
+            <li><button type="button" onClick={() => navigateTo('/deleteSpaceCw')}>DELETE</button></li>
+            <li><button type="button" onClick={handleLogout}>LOGOUT</button></li>
+          </ul>
+        )}
+        {!userId && (
         <ul>
-          <li><button type="button" onClick={() => navigateTo('/home')}>HOME</button></li>
-          <li><button type="button" onClick={() => navigateTo('/NewReservation')}>RESERVE</button></li>
-          <li><button type="button" onClick={() => navigateTo('/MyReservations')}>RESERVATIONS</button></li>
-          <li><button type="button" onClick={() => navigateTo('/newSpaceCw')}>ADD</button></li>
-          <li><button type="button" onClick={() => navigateTo('/deleteSpaceCw')}>DELETE</button></li>
-          <li><button type="button" onClick={handleLogout}>LOGOUT</button></li>
+          <li><button type="button" onClick={() => navigateTo('/login')}>LOGIN</button></li>
+          <li><button type="button" onClick={() => navigateTo('/register')}>REGISTER</button></li>
         </ul>
+        )}
       </div>
       <button type="button" className={`${styles.icon} ${isActive ? styles.closeIcon : ''}`} onClick={clickHandle} aria-label="Toggle Sidebar" />
     </>
