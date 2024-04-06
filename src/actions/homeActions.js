@@ -7,8 +7,13 @@ export const FETCH_COWORKING_SPACES_FAILURE = 'FETCH_COWORKING_SPACES_FAILURE';
 
 export const fetchCoworkingSpaces = () => async (dispatch) => {
   dispatch({ type: FETCH_COWORKING_SPACES_REQUEST });
+  const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
   try {
-    const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`);
+    const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     dispatch({
       type: FETCH_COWORKING_SPACES_SUCCESS,
       payload: response.data,
@@ -27,8 +32,13 @@ export const FETCH_COWORKING_SPACE_FAILURE = 'FETCH_COWORKING_SPACE_FAILURE';
 
 export const fetchCoworkingSpace = (spaceId) => async (dispatch) => {
   dispatch({ type: FETCH_COWORKING_SPACE_REQUEST });
+  const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
   try {
-    const response = await axios.get(`${API_BASE_URL}api/v1/space_cws/${spaceId}`);
+    const response = await axios.get(`${API_BASE_URL}api/v1/space_cws/${spaceId}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     dispatch({
       type: FETCH_COWORKING_SPACE_SUCCESS,
       payload: response.data,
