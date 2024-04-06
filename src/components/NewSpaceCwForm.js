@@ -36,8 +36,13 @@ const NewSpaceCwForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
     try {
-      await axios.post(`${API_BASE_URL}api/v1/users/:user_id/space_cws`, formData);
+      await axios.post(`${API_BASE_URL}api/v1/users/:user_id/space_cws`, formData, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       setSuccessMessage('New coworking space created successfully!');
       setFormData({
         name: '',
@@ -64,7 +69,7 @@ const NewSpaceCwForm = () => {
   return (
     <div className={styles.newCwsContainer}>
       <div className={styles.newCwsOverlay}>
-        <h2 className={styles.newCwsTitle}>Create a New Coworking Space</h2>
+        <h2 className={styles.newCwsTitle}>Create a new coworking space</h2>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input
             type="text"
