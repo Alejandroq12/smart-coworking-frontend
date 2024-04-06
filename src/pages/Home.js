@@ -36,7 +36,9 @@ const Home = () => {
     }
   };
 
-  const visibleSpaces = coworkingSpaces.slice(
+  const safeCoworkingSpaces = Array.isArray(coworkingSpaces) ? coworkingSpaces : [];
+
+  const visibleSpaces = safeCoworkingSpaces.slice(
     visibleStartIndex,
     visibleStartIndex + 3,
   );
