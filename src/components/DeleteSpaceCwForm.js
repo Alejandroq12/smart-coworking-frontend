@@ -17,8 +17,13 @@ const DeleteSpaceCwForm = () => {
   const [fetchError, setFetchError] = useState('');
 
   const fetchSpaceCws = async () => {
+    const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
     try {
-      const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`);
+      const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       setSpaceCws(response.data);
     } catch (error) {
       setFetchError('Error fetching coworking spaces');
@@ -37,6 +42,7 @@ const DeleteSpaceCwForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
     if (!selectedSpaceCwId) {
       setErrorMessage('Please select a coworking space.');
       setTimeout(() => {
@@ -47,7 +53,11 @@ const DeleteSpaceCwForm = () => {
 
     try {
       const deleteUrl = `${API_BASE_URL}api/v1/users/${userId}/space_cws/${selectedSpaceCwId}`;
-      await axios.delete(deleteUrl);
+      await axios.delete(deleteUrl, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       setSuccessMessage('Coworking space was deleted successfully!');
       dispatch({ type: CLEAR_PERSISTED_STATE });
       setTimeout(() => {
