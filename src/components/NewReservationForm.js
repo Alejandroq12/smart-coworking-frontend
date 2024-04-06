@@ -32,8 +32,13 @@ const NewReservationForm = () => {
   }, []);
 
   const fetchSpaceCws = async () => {
+    const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
     try {
-      const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`);
+      const response = await axios.get(`${API_BASE_URL}api/v1/coworking_spaces`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       setSpaceCws(response.data);
       const cityIds = response.data.map((spaceCw) => spaceCw.city_id);
       setFormData((prevFormData) => ({
@@ -51,8 +56,13 @@ const NewReservationForm = () => {
 
   useEffect(() => {
     const fetchCities = async () => {
+      const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
       try {
-        const response = await axios.get(`${API_BASE_URL}api/v1/all_cities`);
+        const response = await axios.get(`${API_BASE_URL}api/v1/all_cities`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
         setCities(response.data);
       } catch (error) {
         setError('Error fetching cities:');
@@ -73,8 +83,13 @@ const NewReservationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
     try {
-      await axios.post(`${API_BASE_URL}api/v1/users/:user_id/reservations`, formData);
+      await axios.post(`${API_BASE_URL}api/v1/users/${formData.user_id}/reservations`, formData, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       setSuccessMessage('Reservation created successfully!');
       setFormData({
         user_id: userId,
