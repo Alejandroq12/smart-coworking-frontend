@@ -1,7 +1,7 @@
 import { FETCH_COWORKING_SPACES_REQUEST, FETCH_COWORKING_SPACES_SUCCESS, FETCH_COWORKING_SPACES_FAILURE } from '../actions/homeActions';
 
 const initialState = {
-  coworkingSpaces: '',
+  coworkingSpaces: [],
   loading: false,
   error: null,
 };
