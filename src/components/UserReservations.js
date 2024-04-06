@@ -21,10 +21,15 @@ const UserReservations = ({ userId }) => {
 
   useEffect(() => {
     const fetchSpaceCwNames = async () => {
+      const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
       try {
         const names = {};
         await Promise.all(reservations.map(async (reservation) => {
-          const response = await axios.get(`${API_BASE_URL}api/v1/space_cws/${reservation.space_cw_id}`);
+          const response = await axios.get(`${API_BASE_URL}api/v1/space_cws/${reservation.space_cw_id}`, {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          });
           names[reservation.id] = response.data.name;
         }));
         setSpaceCwNames(names);
@@ -40,10 +45,15 @@ const UserReservations = ({ userId }) => {
 
   useEffect(() => {
     const fetchCityNames = async () => {
+      const jwt = JSON.parse(localStorage.getItem('user'))?.jwt;
       try {
         const names = {};
         await Promise.all(reservations.map(async (reservation) => {
-          const response = await axios.get(`${API_BASE_URL}api/v1/cities/${reservation.city_id}`);
+          const response = await axios.get(`${API_BASE_URL}api/v1/cities/${reservation.city_id}`, {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          });
           names[reservation.id] = response.data.name;
         }));
         setCityNames(names);
